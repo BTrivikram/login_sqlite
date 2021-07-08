@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_sqlite/models/user.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login_presenter.dart';
 
@@ -151,7 +152,7 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
     if (user.username == "") {
       _showSnackBar("Login not successful");
     } else {
-      _showSnackBar('User not Registered');
+      _showSnackBar('(Not Registered');
     }
     setState(() {
       _isLoading = false;
