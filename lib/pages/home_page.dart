@@ -14,12 +14,40 @@ class _HomePageState extends State<HomePage> {
 
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('Home'),
+        appBar: AppBar(
+          title: Text('Home'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    MaterialApp(
+                      theme: ThemeData.light(),
+                    );
+                  });
+                },
+                icon: Icon(Icons.radio_button_on))
+          ],
+        ),
+        body: ListView(
+          children: w.widgetList,
+        ),
+        drawer: Drawer(
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: SafeArea(
+              child: Container(
+                margin: EdgeInsets.all(20),
+                child: Text(
+                  'LOG OUT',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
           ),
-          body: ListView(
-            children: w.widgetList,
-          )),
+        ),
+      ),
     );
   }
 }

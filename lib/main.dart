@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Sqflite App',
       theme: ThemeData.dark(),
       routes: routes,
-      initialRoute: '/home',
+      // initialRoute: '/home',
     );
   }
 }
