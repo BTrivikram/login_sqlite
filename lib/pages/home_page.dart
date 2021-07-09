@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:login_sqlite/components/components/widget_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -33,7 +33,9 @@ class _HomePageState extends State<HomePage> {
         ),
         drawer: Drawer(
           child: GestureDetector(
-            onTap: () {
+            onTap: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.remove('email');
               Navigator.pop(context);
             },
             child: SafeArea(
