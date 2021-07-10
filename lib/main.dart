@@ -4,6 +4,8 @@ import 'pages/login/login_page.dart';
 import 'pages/login/register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'pages/profile_page.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -14,6 +16,7 @@ Future<void> main() async {
     '/home': (BuildContext context) => HomePage(),
     '/register': (BuildContext context) => RegisterPage(),
     '/': (BuildContext context) => LoginPage(),
+    '/profilePage': (BuildContext context) => ProfilePage(),
   };
   runApp(
     MaterialApp(

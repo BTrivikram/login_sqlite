@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
 
   void _submit() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('email', _email);
+    prefs.setString('email', _presenter.toString());
 
     final form = formKey.currentState;
     final SharedPreferences preferences = await SharedPreferences.getInstance();

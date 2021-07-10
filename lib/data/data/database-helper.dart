@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:login_sqlite/models/photo.dart';
 import 'package:login_sqlite/models/user.dart';
 import 'package:path/path.dart';
 import 'dart:async';
@@ -15,6 +16,9 @@ class DatabaseHelper {
   final String columnName = "name";
   final String columnUserName = "username";
   final String columnPassword = "password";
+  final String photoName = 'photoName';
+  static const String ID = 'id';
+  static const String NAME = 'photo_name';
 
   Future<Database> get db async {
     if (_db != null) {
@@ -35,8 +39,31 @@ class DatabaseHelper {
 
   void _onCreate(Database db, int version) async {
     await db.execute(
-        "CREATE TABLE User(id INTEGER PRIMARY KEY, name TEXT, username TEXT, password TEXT, flaglogged TEXT)");
+        "CREATE TABLE User(id INTEGER PRIMARY KEY, name TEXT, username TEXT, password TEXT, flaglogged TEXT, $NAME TEXT )");
     print("Table is created");
+  }
+
+  Future<Photo> save(Photo employee) async {
+    var dbClient = await db;
+    employee.id = await dbClient.insert(tableUser, employee.toMap());
+    return employee;
+  }
+
+  Future<List<Photo>> getPhotos() async {
+    var dbClient = await db;
+    List<Map> maps = await dbClient.query(tableUser, columns: [ID, NAME]);
+    List<Photo> employees = [];
+    if (maps.length > 0) {
+      for (int i = 0; i < maps.length; i++) {
+        employees.add(Photo.fromMap(maps[i]));
+      }
+    }
+    return employees;
+  }
+
+  Future close() async {
+    var dbClient = await db;
+    dbClient.close();
   }
 
   //insertion

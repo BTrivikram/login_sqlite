@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:login_sqlite/components/components/widget_list.dart';
 
@@ -19,11 +20,7 @@ class _HomePageState extends State<HomePage> {
           actions: [
             IconButton(
                 onPressed: () {
-                  setState(() {
-                    MaterialApp(
-                      theme: ThemeData.light(),
-                    );
-                  });
+                  Navigator.pushNamed(context, '/profilePage');
                 },
                 icon: Icon(Icons.radio_button_on))
           ],

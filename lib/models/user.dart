@@ -4,9 +4,12 @@ class User {
   String _password;
   String _flaglogged;
 
-
-
-  User(this._name, this._username, this._password, this._flaglogged);
+  User(
+    this._name,
+    this._username,
+    this._password,
+    this._flaglogged,
+  );
 
   User.map(dynamic obj) {
     this._name = obj['name'];
@@ -26,6 +29,7 @@ class User {
     map["username"] = _username;
     map["password"] = _password;
     map["flaglogged"] = _flaglogged;
+
     return map;
   }
 }
