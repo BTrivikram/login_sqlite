@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:login_sqlite/models/user.dart';
 import 'package:login_sqlite/pages/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'login_presenter.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,6 +12,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> implements LoginPageContract {
+  final _auth = FirebaseAuth.instance;
   BuildContext _ctx;
   bool _isLoading = false;
   final formKey = new GlobalKey<FormState>();
@@ -29,6 +31,11 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
   }
 
   void _submit() async {
+    final user = await _auth.signInWithEmailAndPassword(
+        email: _email, password: _password);
+    if (user != null) {
+      Navigator.pushNamed(context, '/profilePage');
+    }
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('email', _presenter.toString());
 
@@ -155,7 +162,7 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
   }
 
   @override
-  void onLoginSuccess(User user) async {
+  void onLoginSuccess(Auser user) async {
     // TODO: implement onLoginSuccess
     if (user.username == "") {
       _showSnackBar("Login not successful");

@@ -2,7 +2,7 @@ import 'package:login_sqlite/data/data/rest-data.dart';
 import 'package:login_sqlite/models/user.dart';
 
 abstract class LoginPageContract {
-  void onLoginSuccess(User user);
+  void onLoginSuccess(Auser user);
   void onLoginError(String error);
 }
 

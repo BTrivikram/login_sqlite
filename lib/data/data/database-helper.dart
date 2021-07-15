@@ -67,7 +67,7 @@ class DatabaseHelper {
   }
 
   //insertion
-  Future<int> saveUser(User user) async {
+  Future<int> saveUser(Auser user) async {
     var dbClient = await db;
     print(user.name);
     int res = await dbClient.insert("User", user.toMap());
@@ -77,13 +77,13 @@ class DatabaseHelper {
   }
 
   //deletion
-  Future<int> deleteUser(User user) async {
+  Future<int> deleteUser(Auser user) async {
     var dbClient = await db;
     int res = await dbClient.delete("User");
     return res;
   }
 
-  Future<User> selectUser(User user) async {
+  Future<Auser> selectUser(Auser user) async {
     print("Select User");
     print(user.username);
     print(user.password);

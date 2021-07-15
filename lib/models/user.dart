@@ -1,17 +1,17 @@
-class User {
+class  Auser {
   String _name;
   String _username;
   String _password;
   String _flaglogged;
 
-  User(
+  Auser(
     this._name,
     this._username,
     this._password,
     this._flaglogged,
   );
 
-  User.map(dynamic obj) {
+  Auser.map(dynamic obj) {
     this._name = obj['name'];
     this._username = obj['username'];
     this._password = obj['password'];

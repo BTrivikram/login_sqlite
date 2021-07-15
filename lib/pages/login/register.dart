@@ -1,6 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:login_sqlite/data/data/database-helper.dart';
 import 'package:login_sqlite/models/user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -8,6 +11,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _auth = FirebaseAuth.instance;
   BuildContext _ctx;
   bool _isLoading = false;
   final formKey = new GlobalKey<FormState>();
@@ -96,12 +100,20 @@ class _RegisterPageState extends State<RegisterPage> {
     final form = formKey.currentState;
 
     if (form.validate()) {
-      setState(() {
+      setState(() async {
         _isLoading = true;
         form.save();
-        var user = new User(_name, _username, _password, null);
-        var db = new DatabaseHelper();
-        db.saveUser(user);
+         var user = new Auser(_name, _username, _password, null);
+        try {
+          final newUser = await _auth.createUserWithEmailAndPassword(
+              email: _username, password: _password);
+          
+          var db = new DatabaseHelper();
+          db.saveUser(user);
+        } catch (e) {
+          print(e);
+        }
+
         _isLoading = false;
         Navigator.of(context).pushNamed("/login");
       });

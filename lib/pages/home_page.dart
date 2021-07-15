@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:login_sqlite/components/components/widget_list.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,6 +11,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+ 
+  
+
   @override
   Widget build(BuildContext context) {
     WidgetList w = WidgetList();

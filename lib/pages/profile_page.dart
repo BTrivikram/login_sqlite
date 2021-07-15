@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:login_sqlite/components/components/utility.dart';
 import 'package:login_sqlite/data/data/database-helper.dart';
 import 'package:login_sqlite/models/photo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -21,8 +22,8 @@ class _ProfilePageState extends State<ProfilePage> {
           CircleAvatar(
             radius: 70,
             backgroundImage: _imageFile == null
-                ? NetworkImage(
-                    'https://th.bing.com/th/id/OIP.Sx6HOCnbBdNMAszbbD3VcAHaMS?pid=ImgDet&rs=1')
+                ?  NetworkImage(
+                'https://th.bing.com/th/id/OIP.Sx6HOCnbBdNMAszbbD3VcAHaMS?pid=ImgDet&rs=1')
                 : FileImage(File(_imageFile.path)),
           ),
           Positioned(

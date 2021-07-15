@@ -3,7 +3,6 @@ import 'pages/home_page.dart';
 import 'pages/login/login_page.dart';
 import 'pages/login/register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'pages/profile_page.dart';
 
 Future<void> main() async {
